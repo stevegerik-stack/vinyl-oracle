@@ -12,3 +12,5 @@ Get a free Gemini API key
 Go to aistudio.google.com
 Sign in with Google → Get API key → Create API key
 Free tier: 1,000 requests/day, no credit card required
+
+ 
