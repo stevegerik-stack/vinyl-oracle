@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vinyl Oracle">
+<meta name="theme-color" content="#0e0c0a">
+<title>Vinyl Oracle — Audiophile Pressing Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:          #0e0c0a;
+  --bg2:         #161310;
+  --bg3:         #1e1a16;
+  --bg4:         #252019;
+  --border:      rgba(255,255,255,0.07);
+  --border2:     rgba(255,255,255,0.12);
+  --amber:       #c8912a;
+  --amber-light: #e8b44a;
+  --amber-dim:   rgba(200,145,42,0.12);
+  --amber-dim2:  rgba(200,145,42,0.06);
+  --green:       #4a9e6a;
+  --green-dim:   rgba(74,158,106,0.12);
+  --green-light: #6abf88;
+  --blue:        #4a7e9e;
+  --blue-dim:    rgba(74,126,158,0.12);
+  --blue-light:  #6aa4c0;
+  --red:         #9e4a4a;
+  --red-dim:     rgba(158,74,74,0.12);
+  --cream:       #f0e8d8;
+  --text:        #c8bfb0;
+  --text-muted:  #7a6e60;
+  --text-dim:    #4a4438;
+  --serif:       'Playfair Display', Georgia, serif;
+  --sans:        'DM Sans', sans-serif;
+  --mono:        'DM Mono', monospace;
+  --r:           4px;
+  --rl:          8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+.shell { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+
+/* ── HEADER ── */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  padding-top: env(safe-area-inset-top, 0);
+  display: flex; align-items: center; justify-content: space-between;
+  height: 58px; position: sticky; top: 0; z-index: 100;
+  background: rgba(14,12,10,0.92);
+  backdrop-filter: blur(12px);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-disc {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--bg4); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center; position: relative;
+  flex-shrink: 0;
+}
+.logo-disc::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--amber); position:absolute; z-index:1; }
+.logo-disc::after  { content:''; width:22px; height:22px; border-radius:50%; border:1px solid var(--border2); position:absolute; }
+#hv.spinning { animation: spin 3s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.logo-text { font-family: var(--serif); font-size: 15px; font-weight: 500; color: var(--cream); letter-spacing:.02em; }
+.logo-text em { font-style: italic; color: var(--amber-light); }
+.hdr-right { font-size: 11px; color: var(--text-dim); font-family: var(--mono); }
+
+/* ── HERO ── */
+.hero { padding: 2.75rem 1.5rem 2rem; max-width: 780px; margin: 0 auto; width: 100%; }
+.eyebrow { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); font-weight:500; margin-bottom:.9rem; font-family: var(--mono); }
+h1 { font-family:var(--serif); font-size:clamp(22px,3.5vw,38px); font-weight:400; line-height:1.2; color:var(--cream); margin-bottom:.5rem; }
+h1 em { font-style:italic; color:var(--amber-light); }
+.sub { font-size:14px; color:var(--text-muted); font-weight:300; margin-bottom:2rem; line-height:1.6; }
+
+/* ── SEARCH PANEL ── */
+.search-panel {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: border-color .2s;
+}
+.search-panel:focus-within { border-color: var(--amber); }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr 130px; gap: 10px; margin-bottom: 1.25rem; }
+@media(max-width: 580px) { .field-row { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 420px) { .field-row { grid-template-columns: 1fr; } }
+
+.field-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px;
+}
+.field-input {
+  width: 100%; background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 9px 11px; font-size: 13px;
+  font-family: var(--sans); color: var(--cream); outline: none;
+  transition: border-color .15s;
+}
+.field-input:focus { border-color: var(--amber); }
+.field-input::placeholder { color: var(--text-dim); }
+
+/* ── TABS ── */
+.tabs-bar {
+  display: flex; gap: 0; border-bottom: 1px solid var(--border);
+  margin-bottom: 1.1rem;
+}
+.tab-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 11px; font-family: var(--mono); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-dim);
+  padding: 7px 14px; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: color .15s;
+}
+.tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+.tab-btn:hover:not(.active) { color: var(--text); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── PLANTS GRID ── */
+.plants-meta { display: flex; gap: 10px; margin-bottom: 8px; }
+.link-sm {
+  font-size: 11px; color: var(--text-dim); background: none; border: none;
+  cursor: pointer; font-family: var(--mono); text-decoration: underline;
+  letter-spacing: .05em; transition: color .15s;
+}
+.link-sm:hover { color: var(--amber); }
+.plants-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+@media(max-width: 480px) { .plants-grid { grid-template-columns: 1fr; } }
+.plant-check {
+  display: flex; align-items: center; gap: 8px; font-size: 12px;
+  color: var(--text-muted); cursor: pointer; padding: 5px 8px;
+  border-radius: var(--r); transition: background .1s; user-select: none;
+}
+.plant-check:hover { background: rgba(255,255,255,0.04); }
+.plant-check input[type=checkbox] { width: 13px; height: 13px; flex-shrink: 0; accent-color: var(--amber); cursor: pointer; }
+
+/* ── CHIPS ── */
+.chips-label { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; font-family: var(--mono); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 12px; padding: 5px 12px; border-radius: 99px;
+  border: 1px solid var(--border); color: var(--text-muted);
+  background: transparent; cursor: pointer; font-family: var(--sans);
+  transition: all .15s; -webkit-tap-highlight-color: transparent;
+}
+.chip:hover, .chip:active { border-color: var(--amber); color: var(--amber-light); }
+
+/* ── ACTIONS ── */
+.action-row { display: flex; gap: 8px; margin-top: 1.25rem; }
+.btn-go {
+  flex: 1; background: var(--amber); color: var(--bg); border: none;
+  border-radius: var(--r); padding: 11px 18px; font-size: 14px;
+  font-weight: 500; font-family: var(--sans); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .15s, transform .1s; -webkit-tap-highlight-color: transparent;
+}
+.btn-go:hover { background: var(--amber-light); }
+.btn-go:active { transform: scale(.98); }
+.btn-go:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.btn-clear {
+  background: transparent; color: var(--text-muted); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 10px 16px; font-size: 13px;
+  font-family: var(--sans); cursor: pointer; transition: color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.btn-clear:hover { color: var(--text); border-color: var(--border2); }
+
+/* ── DIVIDER ── */
+.divider { max-width: 780px; margin: 0 auto; width: 100%; padding: 0 1.5rem; display: none; align-items: center; gap: 12px; margin-bottom: 2rem; }
+.divider.show { display: flex; }
+.dl { flex: 1; height: 1px; background: var(--border); }
+.dd { width: 4px; height: 4px; border-radius: 50%; background: var(--amber); }
+
+/* ── OUTPUT ── */
+.out { max-width: 780px; margin: 0 auto; width: 100%; padding: 0 1.5rem 5rem; display: none; }
+.out.show { display: block; }
+
+/* ── LOADING ── */
+.spin-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--amber); font-family: var(--mono); margin-bottom: 1.5rem; }
+.sdot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── RESULT CARDS ── */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1.5rem; }
+@media(max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--rl); padding: 1.25rem; overflow: hidden; position: relative;
+}
+.card.apex { border-color: rgba(200,145,42,0.35); }
+.card.apex::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--amber); }
+.card.everyday { border-color: rgba(74,126,158,0.3); }
+.card.everyday::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--blue); }
+
+.card-badge { font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-family:var(--mono); margin-bottom:7px; display:block; }
+.card.apex .card-badge { color: var(--amber); }
+.card.everyday .card-badge { color: var(--blue-light); }
+.card-title { font-family:var(--serif); font-size:15px; font-weight:500; color:var(--cream); margin-bottom:1rem; line-height:1.3; }
+
+.spec-list { list-style:none; }
+.spec-list li { display:flex; justify-content:space-between; align-items:baseline; padding:5px 0; border-bottom:1px solid var(--border); gap:8px; font-size:12px; }
+.spec-list li:last-child { border-bottom:none; }
+.sk { color:var(--text-muted); font-family:var(--sans); flex-shrink:0; }
+.sv { color:var(--cream); font-family:var(--mono); font-size:11px; text-align:right; max-width:65%; }
+
+.sonic-block {
+  margin-top: 1rem; padding: .75rem; border-left: 2px solid var(--amber);
+  background: var(--amber-dim2); border-radius: 0 var(--r) var(--r) 0;
+}
+.sonic-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: 4px; }
+.sonic-text { font-size: 12px; line-height: 1.7; color: var(--text); }
+
+.warn-block {
+  margin-top: .75rem; padding: .75rem; border-left: 2px solid var(--red);
+  background: var(--red-dim); border-radius: 0 var(--r) var(--r) 0;
+}
+.warn-label { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #c07060; margin-bottom: 4px; }
+
+/* ── SUMMARY ── */
+.summary-card {
+  background: var(--bg3); border: 1px solid rgba(200,145,42,0.25);
+  border-radius: var(--rl); padding: 1.25rem 1.5rem; margin-bottom: 1.75rem;
+}
+.summary-label { font-family: var(--mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+.summary-text { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--cream); line-height: 1.7; }
+
+/* ── DISCOGS SECTION ── */
+.section-head {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem;
+}
+.section-head::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.discogs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-bottom: 1.25rem; }
+
+.d-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--rl); padding: .9rem 1rem;
+  transition: border-color .15s, transform .15s;
+}
+.d-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.d-card.preferred { border-color: rgba(74,158,106,0.35); }
+.d-card-label { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:3px; }
+.d-card-title { font-size:13px; font-weight:500; color:var(--cream); margin-bottom:2px; }
+.d-card-sub { font-size:11px; color:var(--text-muted); margin-bottom:7px; }
+.d-card-link { display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--blue-light); text-decoration:none; font-weight:500; margin-top:4px; }
+.d-card-link:hover { text-decoration:underline; }
+
+.pill { display:inline-block; font-size:10px; padding:2px 8px; border-radius:99px; margin-right:3px; margin-bottom:3px; font-family:var(--mono); }
+.pill-green { background:var(--green-dim); color:var(--green-light); border:1px solid rgba(74,158,106,0.3); }
+.pill-blue  { background:var(--blue-dim);  color:var(--blue-light);  border:1px solid rgba(74,126,158,0.3); }
+.pill-amber { background:var(--amber-dim); color:var(--amber-light); border:1px solid rgba(200,145,42,0.3); }
+.pill-neutral { background:rgba(255,255,255,0.05); color:var(--text-muted); border:1px solid var(--border); }
+
+.discogs-hint {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--rl); padding: 1rem 1.1rem; font-size: 12px;
+  color: var(--text-muted); line-height: 1.7;
+}
+.discogs-hint strong { color: var(--text); display:block; margin-bottom:3px; }
+
+/* ── STREAMING PROSE (fallback) ── */
+.md-body { font-size:14px; color:var(--text); line-height:1.85; }
+.md-body h2 { font-family:var(--serif); color:var(--cream); margin:1.5rem 0 .75rem; font-weight:500; font-size:18px; border-bottom:1px solid var(--border); padding-bottom:8px; }
+.md-body h3 { font-family:var(--serif); color:var(--amber-light); font-size:14px; margin-top:1.25rem; margin-bottom:.5rem; }
+.md-body p  { margin-bottom:.85rem; }
+.md-body strong { color:var(--cream); font-weight:500; }
+.md-body em     { color:var(--amber-light); font-style:italic; }
+.md-body ul,.md-body ol { padding-left:1.25rem; margin:.5rem 0 .9rem; }
+.md-body li { margin-bottom:.4rem; }
+.md-body hr { border:none; border-top:1px solid var(--border); margin:2rem 0; }
+.md-body blockquote { border-left:2px solid var(--amber); padding:.75rem 1rem; margin:1rem 0; background:var(--amber-dim); color:var(--cream); font-family:var(--serif); font-style:italic; border-radius:0 var(--r) var(--r) 0; }
+
+.cursor { display:inline-block; width:2px; height:1em; background:var(--amber); vertical-align:text-bottom; animation:blink 1s step-end infinite; margin-left:2px; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ── ERROR ── */
+.err { background:rgba(139,58,42,.15); border:1px solid rgba(139,58,42,.4); border-radius:var(--r); padding:12px 14px; font-size:13px; color:#e07060; display:none; margin-bottom:1rem; line-height:1.6; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border); padding: 1rem 1.5rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--text-dim); font-family: var(--mono); margin-top: auto;
+  flex-wrap: wrap; gap: 6px;
+}
+footer a { color: var(--text-dim); text-decoration: none; }
+footer a:hover { color: var(--amber); }
+
+@media(max-width:600px) {
+  .hero { padding: 2rem 1.25rem 1.5rem; }
+  .sub  { display: none; }
+  .out  { padding: 0 1.25rem 4rem; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<header>
+  <div class="logo">
+    <div class="logo-disc" id="hv"></div>
+    <div class="logo-text">Vinyl <em>Oracle</em></div>
+  </div>
+  <div class="hdr-right">audiophile pressing guide</div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="eyebrow">◉ Vinyl Research Tool</div>
+    <h1>Find the <em>finest</em> pressing<br>of any record</h1>
+    <p class="sub">Enter an album and artist to get a full audiophile analysis — apex pressing with mastering details, best everyday pick, and targeted Discogs search links.</p>
+
+    <div class="search-panel">
+      <!-- fields -->
+      <div class="field-row">
+        <div>
+          <div class="field-label">Album Title *</div>
+          <input class="field-input" id="album" type="text" placeholder="e.g. Kind of Blue"
+            onkeydown="if(event.key==='Enter') go()">
+        </div>
+        <div>
+          <div class="field-label">Artist / Band *</div>
+          <input class="field-input" id="artist" type="text" placeholder="e.g. Miles Davis"
+            onkeydown="if(event.key==='Enter') go()">
+        </div>
+        <div>
+          <div class="field-label">Year</div>
+          <input class="field-input" id="year" type="text" placeholder="e.g. 1959" maxlength="4"
+            onkeydown="if(event.key==='Enter') go()">
+        </div>
+      </div>
+
+      <!-- tabs: pressing plant / country / engineer -->
+      <div class="tabs-bar">
+        <button class="tab-btn active" onclick="switchTab('plants')">Pressing Plants</button>
+        <button class="tab-btn" onclick="switchTab('country')">Country</button>
+        <button class="tab-btn" onclick="switchTab('engineer')">Engineer</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-plants">
+        <div class="plants-meta">
+          <button class="link-sm" onclick="selectAll(true)">Select all</button>
+          <button class="link-sm" onclick="selectAll(false)">Deselect all</button>
+        </div>
+        <div class="plants-grid" id="plants-grid"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-country">
+        <div class="field-label">Country of Pressing</div>
+        <input class="field-input" id="country-input" type="text" placeholder="e.g. US, Japan, Germany, UK" style="max-width:300px;">
+        <div style="margin-top:8px; font-size:11px; color:var(--text-dim); font-family:var(--mono);">Common: US · Japan · Germany · UK · Netherlands · France · Canada</div>
+      </div>
+
+      <div class="tab-panel" id="tab-engineer">
+        <div class="field-label">Mastering Engineer</div>
+        <input class="field-input" id="engineer-input" type="text" placeholder="e.g. Bernie Grundman, Bob Ludwig, Kevin Gray" style="max-width:360px;">
+        <div style="margin-top:8px; font-size:11px; color:var(--text-dim); font-family:var(--mono);">Notable: Bernie Grundman · Bob Ludwig · Kevin Gray · Steve Hoffman · Doug Sax</div>
+      </div>
+      <div class="action-row">
+        <button class="btn-go" id="main-btn" onclick="go()">
+          <span id="btn-icon">◉</span>
+          <span id="btn-text">Analyze Pressings + Search Discogs</span>
+        </button>
+        <button class="btn-clear" onclick="resetAll()">Clear</button>
+      </div>
+    </div>
+
+    <!-- quick starts -->
+    <div>
+      <div class="chips-label">Quick starts</div>
+      <div class="chips">
+        <button class="chip" onclick="sq('Kind of Blue','Miles Davis','1959')">Kind of Blue</button>
+        <button class="chip" onclick="sq('A Love Supreme','John Coltrane','1964')">A Love Supreme</button>
+        <button class="chip" onclick="sq('Dark Side of the Moon','Pink Floyd','1973')">Dark Side of the Moon</button>
+        <button class="chip" onclick="sq('Blue','Joni Mitchell','1971')">Blue — Joni Mitchell</button>
+        <button class="chip" onclick="sq(&quot;What's Going On&quot;,'Marvin Gaye','1971')">What's Going On</button>
+        <button class="chip" onclick="sq('Led Zeppelin IV','Led Zeppelin','1971')">Led Zeppelin IV</button>
+        <button class="chip" onclick="sq('Rumours','Fleetwood Mac','1977')">Rumours</button>
+        <button class="chip" onclick="sq('Pet Sounds','The Beach Boys','1966')">Pet Sounds</button>
+        <button class="chip" onclick="sq('Thriller','Michael Jackson','1982')">Thriller</button>
+        <button class="chip" onclick="sq('Exile on Main St','Rolling Stones','1972')">Exile on Main St</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- divider -->
+  <div class="divider" id="divider"><div class="dl"></div><div class="dd"></div><div class="dl"></div></div>
+
+  <!-- output -->
+  <div class="out" id="out">
+    <div class="err" id="err"></div>
+    <div id="ind" style="display:none">
+      <div class="spin-badge"><div class="sdot"></div> researching pressings…</div>
+    </div>
+    <div id="content"></div>
+  </div>
+</main>
+
+<footer>
+  <span>Vinyl Oracle — audiophile pressing guide</span>
+  <span>
+    <a href="https://www.discogs.com" target="_blank">Discogs ↗</a>
+    &nbsp;·&nbsp;
+    <a href="https://stevehoffman.tv" target="_blank">Steve Hoffman Forums ↗</a>
+  </span>
+</footer>
+</div>
+
+<script>
+/* ── PLANTS ── */
+const PLANTS = [
+  {id:'qrp',     label:'Quality Record Pressings (QRP)', kw:['Quality Record Pressings','QRP']},
+  {id:'pallas',  label:'Pallas — Germany',               kw:['Pallas']},
+  {id:'rti',     label:'Record Technology Inc. (RTI)',   kw:['Record Technology','RTI']},
+  {id:'optimal', label:'Optimal Media — Germany',        kw:['Optimal Media','Optimal']},
+  {id:'recind',  label:'Record Industry — Netherlands',  kw:['Record Industry']},
+  {id:'gotta',   label:'Gotta Groove Records',           kw:['Gotta Groove']},
+  {id:'thirdman',label:'Third Man Pressing',             kw:['Third Man Pressing']},
+  {id:'furnace', label:'Furnace Record Pressing',        kw:['Furnace Record Pressing','Furnace']},
+  {id:'sonydadc',label:'Sony DADC — Japan',              kw:['Sony DADC']},
+  {id:'samurai', label:'Samurai Hotel / Toyokasei — Japan', kw:['Samurai Hotel','Toyokasei']},
+];
+
+let activeTab = 'plants';
+
+function buildPlantsGrid(){
+  document.getElementById('plants-grid').innerHTML = PLANTS.map(p=>`
+    <label class="plant-check">
+      <input type="checkbox" id="plant-${p.id}" checked>
+      <span>${p.label}</span>
+    </label>`).join('');
+}
+
+function selectAll(v){ PLANTS.forEach(p=>{ const c=document.getElementById('plant-'+p.id); if(c) c.checked=v; }); }
+
+function switchTab(t){
+  activeTab = t;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    b.classList.toggle('active', ['plants','country','engineer'][i]===t);
+  });
+  ['plants','country','engineer'].forEach(id=>{
+    document.getElementById('tab-'+id).classList.toggle('active', id===t);
+  });
+}
+
+function gv(id){ return (document.getElementById(id)||{}).value?.trim()||''; }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function sq(album, artist, year){
+  document.getElementById('album').value = album;
+  document.getElementById('artist').value = artist;
+  document.getElementById('year').value = year||'';
+}
+
+/* ── DISCOGS URL BUILDER ── */
+function buildURL(parts, year, country){
+  const p = new URLSearchParams();
+  p.set('q', parts.filter(Boolean).join(' '));
+  p.set('type','release'); p.set('format','Vinyl');
+  if(year) p.set('year', year);
+  if(country) p.set('country', country);
+  return 'https://www.discogs.com/search/?'+p.toString();
+}
+
+function buildDiscogsCards(album, artist, year){
+  const base = buildURL([artist, album], year);
+  let html = `
+    <div class="d-card">
+      <div class="d-card-label">All editions</div>
+      <div class="d-card-title">Browse all vinyl pressings</div>
+      <div class="d-card-sub">${esc(album)}${artist?' — '+esc(artist):''}${year?' ('+year+')':''}</div>
+      <div><span class="pill pill-neutral">broad search</span></div>
+      <a class="d-card-link" href="${base}" target="_blank">Open on Discogs ↗</a>
+    </div>`;
+
+  if(activeTab==='plants'){
+    const sel = PLANTS.filter(p=>document.getElementById('plant-'+p.id)?.checked);
+    sel.forEach(p=>{
+      const url = buildURL([artist, album, '"'+p.kw[0]+'"'], year);
+      html += `
+        <div class="d-card preferred">
+          <div class="d-card-label">Pressing plant</div>
+          <div class="d-card-title">${esc(p.label)}</div>
+          <div class="d-card-sub">${esc(album)}${artist?' — '+esc(artist):''}</div>
+          <div>${p.kw.map(k=>`<span class="pill pill-green">${esc(k)}</span>`).join('')}</div>
+          <a class="d-card-link" href="${url}" target="_blank">Open on Discogs ↗</a>
+        </div>`;
+    });
+  } else if(activeTab==='country'){
+    const country = gv('country-input');
+    if(country){
+      const url = buildURL([artist, album], year, country);
+      html += `
+        <div class="d-card preferred">
+          <div class="d-card-label">Country filter</div>
+          <div class="d-card-title">${esc(album)} — ${esc(country)} pressings</div>
+          <div class="d-card-sub">Vinyl editions pressed in ${esc(country)}</div>
+          <div><span class="pill pill-blue">${esc(country)}</span></div>
+          <a class="d-card-link" href="${url}" target="_blank">Open on Discogs ↗</a>
+        </div>`;
+    }
+  } else {
+    const eng = gv('engineer-input');
+    if(eng){
+      const url = buildURL([artist, album, '"'+eng+'"'], year);
+      html += `
+        <div class="d-card preferred">
+          <div class="d-card-label">Mastering engineer</div>
+          <div class="d-card-title">${esc(album)} — masterings by ${esc(eng)}</div>
+          <div class="d-card-sub">Releases credited to this engineer</div>
+          <div><span class="pill pill-amber">${esc(eng)}</span></div>
+          <a class="d-card-link" href="${url}" target="_blank">Open on Discogs ↗</a>
+        </div>`;
+    }
+  }
+  return html;
+}
+
+/* ── AI PROMPT ── */
+function buildPrompt(album, artist, year){
+  return `You are an expert audiophile, vinyl archivist, and record collector with deep knowledge of pressing plants, mastering engineers, lacquer cutters, and collector communities (Steve Hoffman Music Forums, Vinyl Engine, Discogs).
+
+Find the absolute best-sounding vinyl pressings of the album "${album}" by "${artist}"${year?' (originally released '+year+')':''}.
+
+Structure your entire response using these exact XML tags:
+
+<apex>
+THE DEFINITIVE AUDIOPHILE / APEX PRESSING:
+Identify the single version considered to have the highest audio fidelity — original first pressing, half-speed master, 45 RPM reissue, or premium audiophile label (Mobile Fidelity Sound Lab, Analogue Productions, Impex, Music Matters Jazz, Classic Records, Speakers Corner, etc.).
+
+Provide these labeled fields:
+YEAR_LABEL_COUNTRY: exact year, label, catalog number, and country
+MASTERING: mastering engineer and lacquer cutter; note specific runout etchings (e.g. "RVG" stamp, "STERLING" etch, "PORKY/PECKO" etch)
+PRESSING_PLANT: manufacturing plant (RTI, Pallas, QRP, Record Industry, Rainbo, Capitol, Presswell, etc.)
+SPECS: RPM speed, single/double LP, vinyl weight, any special packaging
+SONIC: soundstage, dynamic range, low-end definition, midrange, top-end; name 2-3 specific tracks where it shines
+DRAWBACKS: price range on used market, availability issues, specific mispresses or variants to avoid
+</apex>
+
+<everyday>
+THE BEST ACCESSIBLE / EVERYDAY LISTENING PRESSING:
+Identify the best readily available, reasonably priced pressing for daily listening.
+
+Provide these labeled fields:
+STANDOUT: why this pressing beats other common budget variants available today
+SONIC_COMPARE: how it compares to the apex — exactly where it falls short (dynamics, low-end, soundstage)
+NOISE_QUALITY: pressing consistency and noise floor the buyer can realistically expect
+WHERE_PRICE: where to buy and approximate price range
+</everyday>
+
+<summary>
+2–3 sentences: direct recommendation for absolute sound quality priority vs. value/availability priority. Be specific about which pressing wins each scenario.
+</summary>
+
+Use real product names, catalog numbers, and engineer names. Be specific and accurate. If this is obscure with limited pressing history, say so honestly.`;
+}
+
+/* ── PARSE AI XML RESPONSE ── */
+function parseAI(text){
+  const extract = tag => {
+    const m = text.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+    return m ? m[1].trim() : '';
+  };
+  return { apex: extract('apex'), everyday: extract('everyday'), summary: extract('summary') };
+}
+
+function parseFields(text){
+  const f = {};
+  const patterns = [
+    ['year_label',   /YEAR_LABEL_COUNTRY[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['mastering',    /MASTERING[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['plant',        /PRESSING_PLANT[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['specs',        /SPECS[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['sonic',        /SONIC[:\s]+([^\s][^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['sonic_cmp',    /SONIC_COMPARE[:\s]+([^\s][^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['drawbacks',    /DRAWBACKS[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['standout',     /STANDOUT[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['noise',        /NOISE_QUALITY[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+    ['where_price',  /WHERE_PRICE[:\s]+([^\n]+(?:\n(?![A-Z_]+:)[^\n]+)*)/i],
+  ];
+  patterns.forEach(([k, re])=>{ const m=text.match(re); if(m) f[k]=m[1].trim(); });
+  return f;
+}
+
+function renderApex(f){
+  return `
+  <div class="card apex">
+    <span class="card-badge">◈ Apex pressing</span>
+    <div class="card-title">Definitive Audiophile Edition</div>
+    ${(f.year_label||f.mastering||f.plant||f.specs) ? `<ul class="spec-list">
+      ${f.year_label ? `<li><span class="sk">Release</span><span class="sv">${esc(f.year_label)}</span></li>` : ''}
+      ${f.mastering  ? `<li><span class="sk">Mastering</span><span class="sv">${esc(f.mastering)}</span></li>` : ''}
+      ${f.plant      ? `<li><span class="sk">Plant</span><span class="sv">${esc(f.plant)}</span></li>` : ''}
+      ${f.specs      ? `<li><span class="sk">Format</span><span class="sv">${esc(f.specs)}</span></li>` : ''}
+    </ul>` : ''}
+    ${f.sonic ? `<div class="sonic-block"><div class="sonic-label">Sonic character</div><div class="sonic-text">${esc(f.sonic)}</div></div>` : ''}
+    ${f.drawbacks ? `<div class="warn-block"><div class="warn-label">⚠ Drawbacks</div><div class="sonic-text" style="font-size:12px;color:var(--text);">${esc(f.drawbacks)}</div></div>` : ''}
+  </div>`;
+}
+
+function renderEveryday(f){
+  return `
+  <div class="card everyday">
+    <span class="card-badge">◇ Everyday pressing</span>
+    <div class="card-title">Best Value / Accessible Pick</div>
+    ${f.standout ? `<div class="sonic-block" style="border-left-color:var(--blue);background:var(--blue-dim);"><div class="sonic-label" style="color:var(--blue-light);">Why it stands out</div><div class="sonic-text">${esc(f.standout)}</div></div>` : ''}
+    ${(f.sonic_cmp||f.noise||f.where_price) ? `<ul class="spec-list" style="margin-top:.85rem;">
+      ${f.sonic_cmp   ? `<li><span class="sk">vs Apex</span><span class="sv">${esc(f.sonic_cmp)}</span></li>` : ''}
+      ${f.noise       ? `<li><span class="sk">Noise floor</span><span class="sv">${esc(f.noise)}</span></li>` : ''}
+      ${f.where_price ? `<li><span class="sk">Where / Price</span><span class="sv">${esc(f.where_price)}</span></li>` : ''}
+    </ul>` : ''}
+  </div>`;
+}
+
+/* ── STREAMING MARKDOWN (fallback for unstructured responses) ── */
+function renderMD(text){
+  let s = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  s = s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  s = s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  s = s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  s = s.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
+  s = s.replace(/^---+$/gm,'<hr>');
+  s = s.replace(/^[-*] (.+)$/gm,'<li>$1</li>');
+  s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, m=>'<ul>'+m+'</ul>');
+  s = s.replace(/<\/ul>\s*<ul>/g,'');
+  s = s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  s = s.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  s = s.replace(/`(.+?)`/g,'<code>$1</code>');
+  s = s.replace(/\n{2,}/g,'</p><p>');
+  s = s.replace(/\n/g,' ');
+  return '<p>'+s+'</p>';
+}
+
+/* ── MAIN ── */
+async function go(){
+  const album  = gv('album');
+  const artist = gv('artist');
+  const year   = gv('year');
+
+  if(!album || !artist){ alert('Please enter both an album title and artist name.'); return; }
+
+  const btn = document.getElementById('main-btn');
+  btn.disabled = true;
+  document.getElementById('btn-text').textContent = 'Consulting the Oracle…';
+  document.getElementById('btn-icon').textContent = '◌';
+
+  const outEl    = document.getElementById('out');
+  const errEl    = document.getElementById('err');
+  const contEl   = document.getElementById('content');
+  const indEl    = document.getElementById('ind');
+  const dividerEl= document.getElementById('divider');
+  const hv       = document.getElementById('hv');
+
+  errEl.style.display = 'none';
+  contEl.innerHTML = '';
+  outEl.classList.add('show');
+  dividerEl.classList.add('show');
+  indEl.style.display = 'block';
+  hv.classList.add('spinning');
+  outEl.scrollIntoView({ behavior:'smooth', block:'start' });
+
+  let fullText = '';
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'gemini-2.5-flash',
+        max_tokens: 3000,
+        prompt: buildPrompt(album, artist, year)
+      })
+    });
+
+    if(!res.ok){
+      const eb = await res.json().catch(()=>({}));
+      throw new Error((eb?.error?.message) || 'Server error (' + res.status + ')');
+    }
+
+    indEl.style.display = 'none';
+
+    const data = await res.json();
+    fullText = data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('') || '';
+
+    // Now render structured output
+    const parsed = parseAI(fullText);
+    const hasStructure = parsed.apex || parsed.everyday || parsed.summary;
+
+    if(hasStructure){
+      contEl.innerHTML = ''; // clear streaming div
+
+      const apexF     = parseFields(parsed.apex);
+      const everydayF = parseFields(parsed.everyday);
+
+      // cards
+      if(parsed.apex || parsed.everyday){
+        contEl.innerHTML += `<div class="cards">
+          ${parsed.apex     ? renderApex(apexF)     : ''}
+          ${parsed.everyday ? renderEveryday(everydayF) : ''}
+        </div>`;
+      }
+
+      // summary
+      if(parsed.summary){
+        contEl.innerHTML += `<div class="summary-card">
+          <div class="summary-label">◉ Oracle's Verdict</div>
+          <div class="summary-text">${esc(parsed.summary)}</div>
+        </div>`;
+      }
+    } else {
+      // structured tags not found — leave streaming prose as-is
+      streamDiv.innerHTML = renderMD(fullText);
+    }
+
+    // Discogs section always appears
+    contEl.innerHTML += `
+      <div>
+        <div class="section-head">Discogs Search Links</div>
+        <div class="discogs-grid">${buildDiscogsCards(album, artist, year)}</div>
+        <div class="discogs-hint">
+          <strong>Finding pressing plant info on Discogs</strong>
+          On each release page, check <em>Label &amp; Company → Pressed By</em> and the <em>Notes</em> section.
+          Mastering engineers appear under <em>Credits</em>. Country is shown in the release header.
+        </div>
+      </div>`;
+
+    hv.classList.remove('spinning');
+
+  } catch(e){
+    indEl.style.display = 'none';
+    hv.classList.remove('spinning');
+
+    // Still render Discogs links even on AI error
+    contEl.innerHTML = `<div class="discogs-grid" style="margin-bottom:1.25rem;">${buildDiscogsCards(album, artist, year)}</div>`;
+
+    errEl.textContent = (e.message||'Something went wrong.') + ' — Discogs links are still available above.';
+    errEl.style.display = 'block';
+  }
+
+  btn.disabled = false;
+  document.getElementById('btn-text').textContent = 'Analyze Pressings + Search Discogs';
+  document.getElementById('btn-icon').textContent = '◉';
+}
+
+function resetAll(){
+  ['album','artist','year','country-input','engineer-input'].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.value='';
+  });
+  selectAll(true);
+  document.getElementById('out').classList.remove('show');
+  document.getElementById('divider').classList.remove('show');
+  document.getElementById('content').innerHTML = '';
+  document.getElementById('err').style.display = 'none';
+  document.getElementById('btn-text').textContent = 'Analyze Pressings + Search Discogs';
+  document.getElementById('btn-icon').textContent = '◉';
+  document.getElementById('main-btn').disabled = false;
+  document.getElementById('hv').classList.remove('spinning');
+}
+
+
+}
+buildPlantsGrid();
+</script>
+</body>
+</html>
