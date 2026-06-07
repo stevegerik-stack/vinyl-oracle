@@ -726,8 +726,8 @@ async function go(){
         </div>`;
       }
     } else {
-      // structured tags not found — leave streaming prose as-is
-      streamDiv.innerHTML = renderMD(fullText);
+      // structured tags not found — render as markdown prose
+      contEl.innerHTML = '<div class="md-body">' + renderMD(fullText) + '</div>';
     }
 
     // Discogs section always appears
